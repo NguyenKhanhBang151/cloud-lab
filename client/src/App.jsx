@@ -9,11 +9,14 @@ function App() {
 
   const [editingId, setEditingId] = useState(null);
 
+  // Đổi thành cổng 5000 của Backend
+  const API_URL = "http://localhost:5000/api/students";
+
   useEffect(() => {
-    fetch("/api/students")
+    fetch(API_URL)
       .then((response) => response.json())
       .then((data) => {
-        setStudents(data);
+        setStudents(Array.isArray(data) ? data : []);
       })
       .catch((error) => {
         console.error("Lỗi:", error);
@@ -23,7 +26,7 @@ function App() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch("/api/students", {
+    const response = await fetch(API_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -60,7 +63,7 @@ function App() {
   const handleUpdate = async (e) => {
     e.preventDefault();
 
-    const response = await fetch(`/api/students/${editingId}`, {
+    const response = await fetch(`${API_URL}/${editingId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -97,7 +100,7 @@ function App() {
       return;
     }
 
-    const response = await fetch(`/api/students/${id}`, {
+    const response = await fetch(`${API_URL}/${id}`, {
       method: "DELETE",
     });
 
