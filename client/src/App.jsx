@@ -9,7 +9,7 @@ function App() {
 
   const [editingId, setEditingId] = useState(null);
 
-  // Đổi thành cổng 5000 của Backend
+  // Cổng 5000 của Backend
   const API_URL = "http://localhost:5000/api/students";
 
   useEffect(() => {
@@ -108,7 +108,7 @@ function App() {
 
     if (response.ok) {
       setStudents(
-        students.filter((student) => student._id !== id)
+        students.filter((student) => student._id === id)
       );
 
       alert("Xóa sinh viên thành công!");
@@ -125,8 +125,8 @@ function App() {
   };
 
   return (
-    <div>
-      <h1>Quản lý sinh viên</h1>
+    <div style={{ padding: "20px" }}>
+      <h1>Quản lý sinh viên - MERN Stack App v2.0</h1>
 
       <h2>{editingId ? "Cập nhật sinh viên" : "Thêm sinh viên"}</h2>
 
@@ -175,7 +175,7 @@ function App() {
         </button>
 
         {editingId && (
-          <button type="button" onClick={handleCancel}>
+          <button type="button" onClick={handleCancel} style={{ marginLeft: "10px" }}>
             Hủy
           </button>
         )}
@@ -190,9 +190,9 @@ function App() {
       ) : (
         <ul>
           {students.map((student) => (
-            <li key={student._id}>
-              {student.studentId} - {student.name} - {student.email}{" "}
-              <button onClick={() => handleEdit(student)}>
+            <li key={student._id} style={{ marginBottom: "10px" }}>
+              <strong>MSSV:</strong> {student.studentId} | <strong>Họ tên:</strong> {student.name} | <strong>Email:</strong> {student.email}{" "}
+              <button onClick={() => handleEdit(student)} style={{ marginLeft: "10px" }}>
                 Sửa
               </button>{" "}
               <button onClick={() => handleDelete(student._id)}>

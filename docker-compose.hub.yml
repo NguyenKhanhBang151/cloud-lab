@@ -2,14 +2,14 @@ version: '3.8'
 
 services:
   backend:
-    image: nguyenkhanhbang/mern-backend:1.0
+    image: nguyenkhanhbang/mern-backend:2.0
     ports:
       - "5000:5000"
     env_file:
       - ./mern-demo/.env
 
   frontend:
-    image: nguyenkhanhbang/mern-frontend:1.0
+    image: nguyenkhanhbang/mern-frontend:2.0
     ports:
       - "5173:5173"
     command: npm run dev -- --host
