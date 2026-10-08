@@ -9,8 +9,9 @@ function App() {
 
   const [editingId, setEditingId] = useState(null);
 
-  // Cổng 5000 của Backend
-  const API_URL = "http://localhost:5000/api/students";
+  // Đọc Backend URL từ biến môi trường (Render) hoặc fallback localhost
+  const BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+  const API_URL = `${BASE_URL}/api/students`;
 
   useEffect(() => {
     fetch(API_URL)
@@ -108,7 +109,7 @@ function App() {
 
     if (response.ok) {
       setStudents(
-        students.filter((student) => student._id === id)
+        students.filter((student) => student._id !== id)
       );
 
       alert("Xóa sinh viên thành công!");
