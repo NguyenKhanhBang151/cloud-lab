@@ -9,9 +9,8 @@ function App() {
 
   const [editingId, setEditingId] = useState(null);
 
-  // Đọc Backend URL từ biến môi trường (Render) hoặc fallback localhost
-  const BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
-  const API_URL = `${BASE_URL}/api/students`;
+  // Đường dẫn tương đối phục vụ Nginx Reverse Proxy (Buổi 6)
+  const API_URL = "/api/students";
 
   useEffect(() => {
     fetch(API_URL)
